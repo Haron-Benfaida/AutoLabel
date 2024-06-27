@@ -22,7 +22,6 @@ class Utils:
         string = string.replace(" ", "")
         string = string.replace(",", "")
         string = string.replace(".", "")
-        string = string.replace("/", "")
         string = string.replace("\\", "")
         return string[string.index('{') + 1: string.index('}')]
     
@@ -37,7 +36,7 @@ class Utils:
         if typed == source:
             return 0
         if limit < 0:
-            return 0
+            return 999
         if source == "":
             return len(typed)
         if typed == "":
@@ -52,12 +51,14 @@ class Utils:
 
     @staticmethod
     def closest_finder(string, arr):
+        arr1 = [i for i in arr if i != '']
         lengths = []
-        for candidate in arr:
+        for candidate in arr1:
             if not candidate:
                 continue
-            lengths.append(Utils.minimum_mutations(string, candidate, 999))
-        return lengths.index(min(lengths))
+            lengths.append(Utils.minimum_mutations(string, candidate, 4))
+        min_idx = lengths.index(min(lengths))
+        return arr.index(arr1[min_idx])
 
 
 

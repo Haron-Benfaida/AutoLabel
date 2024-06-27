@@ -1,8 +1,8 @@
 class Utils:
     @staticmethod
     def str_to_pairs(string):
-        counter_key_val, counter_item = 0,0
-        pairs = [[''] * 2 for _ in range(5)]
+        counter_key_val, counter_item = 0, 0
+        pairs = [[''] * 2 for _ in range(99)]
         for char in string:
             if char == ';':
                 counter_item += 1
@@ -19,7 +19,7 @@ class Utils:
     def remove_str_artefacts(string):
         string = string.replace('\n', "")
         string = string.replace("'", "")
-        string = string.replace(" ", "")
+        #string = string.replace(" ", "")
         string = string.replace(",", "")
         string = string.replace(".", "")
         string = string.replace("\\", "")

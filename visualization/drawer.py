@@ -1,8 +1,8 @@
-from utils import Utils
-from PIL import Image, ImageDraw, ImageFont
+from utils.str_utils import Utils
+from PIL import ImageDraw, ImageFont
 
 
-class Boxer:
+class Drawer:
     @staticmethod
     def data2boxes(data, text, boxes):
         data2boxes = {}
@@ -20,5 +20,9 @@ class Boxer:
             canvas.rectangle(box, outline='green')
             canvas.text((box[0] + 10, box[1] - 10), text=data, fill='green', font=font)
         return image
+
+    @staticmethod
+    def show_image(image):
+        image.show()
 
 

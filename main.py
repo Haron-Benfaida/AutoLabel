@@ -5,7 +5,7 @@ from llm.EngineLLM import LLMEngine
 from visualization.drawer import Drawer
 
 CONFIG = {
-    "ocr_engine": "tesseract",
+    "ocr_engine": "easyocr",
     "model": "llama3 70b",
     "dataset": "ayoub999/dataset_for_orange_factures"
 }
@@ -21,12 +21,15 @@ def init_components(config):
 
 def main():
     ocr_engine, llm_engine, drawer, dataset = init_components(CONFIG)
-    example = dataset['train'][4]['image']
+    example = dataset['train'][3]['image']
     words, boxes = ocr_engine.ocr(example)
     response = Utils.query_to_dict(llm_engine.ocr_to_llm(words))
     data2boxes = Drawer.data2boxes(response, words, boxes)
     boxed_image = Drawer.box_all(example, data2boxes)
     Drawer.show_image(boxed_image)
+
+
+
 
 
 if __name__ == '__main__':

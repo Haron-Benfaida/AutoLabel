@@ -21,14 +21,14 @@ def init_components(config):
 
 def main():
     ocr_engine, llm_engine, drawer, dataset = init_components(CONFIG)
-    example = dataset['train'][3]['image']
+    example = dataset['train'][8]['image']
     words, boxes = ocr_engine.ocr(example)
+    print("ocr done")
     response = Utils.query_to_dict(llm_engine.ocr_to_llm(words))
+    print("llm done")
     data2boxes = Drawer.data2boxes(response, words, boxes)
     boxed_image = Drawer.box_all(example, data2boxes)
     Drawer.show_image(boxed_image)
-
-
 
 
 

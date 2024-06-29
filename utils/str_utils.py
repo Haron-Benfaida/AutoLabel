@@ -1,3 +1,6 @@
+from rapidfuzz import process, fuzz
+
+
 class Utils:
     @staticmethod
     def str_to_pairs(string):
@@ -52,14 +55,19 @@ class Utils:
     @staticmethod
     def closest_finder(string, arr):
         arr1 = [i for i in arr if i != '']
-        lengths = []
-        for candidate in arr1:
-            if not candidate:
-                continue
-            lengths.append(Utils.minimum_mutations(string, candidate, 4))
-        min_idx = lengths.index(min(lengths))
-        return arr.index(arr1[min_idx])
+        # lengths = []
+        # for candidate in arr1:
+        #     if not candidate:
+        #         continue
+        #     lengths.append(Utils.minimum_mutations(string, candidate, 7))
+        # min_idx = lengths.index(min(lengths))
+        # return arr.index(arr1[min_idx])
+        similitudes = process.extract(string, arr1, scorer=fuzz.WRatio, limit=20)
+        return arr.index(similitudes[0][0])
 
+    @staticmethod
+    def common_chars(string1, string2):
+        pass
 
 
 
